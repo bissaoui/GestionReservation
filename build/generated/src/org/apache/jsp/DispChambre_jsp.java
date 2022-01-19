@@ -3,17 +3,10 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import java.util.Locale;
-import java.util.concurrent.TimeUnit;
-import java.util.Date;
-import java.text.SimpleDateFormat;
 import services.ChambreServices;
-import entities.Reservation;
-import services.ReservationServices;
-import services.UserServices;
-import entities.User;
+import entities.Chambre;
 
-public final class MyReservation_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class DispChambre_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -61,25 +54,20 @@ public final class MyReservation_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("\n");
       out.write("\n");
       out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-
-    int idUser = Integer.parseInt(session.getAttribute("idUser").toString());
-    if (session.getAttribute("idUser") == null) {
-
-        response.sendRedirect("login.jsp");
-
+ 
+    
+    if(session.getAttribute("idUser")==null){
+        
+        
+                
+               response.sendRedirect("login.jsp");
+        
     }
 
 
       out.write("\n");
       out.write("<body>\n");
       out.write("    <div class=\"container-scroller\"> \n");
-      out.write("        ");
       out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html><head>\n");
@@ -167,9 +155,8 @@ public final class MyReservation_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("      </div>\n");
       out.write("    </nav>\n");
       out.write("\n");
-      out.write("        <div class=\"container-fluid page-body-wrapper\">\n");
+      out.write("<div class=\"container-fluid page-body-wrapper\">\n");
       out.write("\n");
-      out.write("            ");
       out.write("<div class=\"theme-setting-wrapper\">\r\n");
       out.write("        <div id=\"settings-trigger\"><i class=\"ti-settings\"></i></div>\r\n");
       out.write("        <div id=\"theme-settings\" class=\"settings-panel\">\r\n");
@@ -349,7 +336,7 @@ public final class MyReservation_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("          </li>\r\n");
       out.write("          \r\n");
       out.write("          <li class=\"nav-item\">\r\n");
-      out.write("            <a class=\"nav-link\" href=\"dispChambre.jsp\">\r\n");
+      out.write("            <a class=\"nav-link\" href=\"\">\r\n");
       out.write("              <i class=\"menu-icon mdi mdi-account-circle-outline\"></i>\r\n");
       out.write("              <span class=\"menu-title\"> les chambres disponibles </span>\r\n");
       out.write("            </a>\r\n");
@@ -365,82 +352,65 @@ public final class MyReservation_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("      </nav>");
       out.write("\n");
       out.write("\n");
-      out.write("            <div class=\"main-panel\">\n");
-      out.write("                <div class=\"content-wrapper\">\n");
-      out.write("                    <div class=\"row\">\n");
-      out.write("                        <div class=\"col-lg-12 grid-margin stretch-card\">\n");
-      out.write("                            <div class=\"card\">\n");
-      out.write("                                <div class=\"card-body\">\n");
-      out.write("                                    <h4 class=\"card-title\">Mes  Reservations</h4>\n");
-      out.write("                                    <div class=\"table-responsive\">\n");
-      out.write("                                        <table class=\"table\">\n");
-      out.write("                                            <thead>\n");
-      out.write("                                                <tr>\n");
-      out.write("                                                    <th>Date debut</th>\n");
-      out.write("                                                    <th>Date fin</th>\n");
-      out.write("                                                    <th>Numero Chambre</th>\n");
-      out.write("                                                    <th>Type chambre</th>\n");
-      out.write("                                                    <th>Tarif</th>\n");
+      out.write("<div class=\"main-panel\">\n");
+      out.write("        <div class=\"content-wrapper\">\n");
       out.write("\n");
-      out.write("                                                </tr>\n");
-      out.write("                                            </thead>\n");
-      out.write("                                            <tbody>\n");
-      out.write("                                                ");
-   ReservationServices us = new ReservationServices();
-                                                    ChambreServices rs = new ChambreServices();
-                                                    for (Reservation u : us.findAll()) {
-                                                        if (u.getIdUser()==idUser){
-                                                            
-                                                        
-                                                
+      out.write("            <h1 class=\"card-title mb-5 col-lg-9\"  style=\"\n");
+      out.write("    display: inline-block;\n");
+      out.write("\">Gestion Chambres</h1>\n");
+      out.write("            \n");
+      out.write("            <div style=\"\n");
+      out.write("    display: inline-block;\n");
+      out.write("    width: 230px;\"\n");
+      out.write("    class=\"col-lg-6\"\n");
+      out.write(">\n");
+      out.write("       \n");
+      out.write("            </div>\n");
+      out.write("            \n");
+      out.write("       <div class=\"row\">\n");
+      out.write("           ");
+   ChambreServices us = new ChambreServices();
+                                for(Chambre u : us.findAllChambreNotUsed())
+                                {
+                          
       out.write("\n");
-      out.write("                                                <tr>\n");
-      out.write("                                                    <td>");
-      out.print( u.getDateDebut());
-      out.write("</td>\n");
-      out.write("                                                    <td>");
-      out.print( u.getDateFin());
-      out.write("</td>\n");
-      out.write("                                                    <td>");
-      out.print( rs.findById(u.getIdChambre()).getNumero());
-      out.write("</td>\n");
-      out.write("                                                    <td>");
-      out.print( rs.findById(u.getIdChambre()).getType());
-      out.write("</td>\n");
-      out.write("                                                    ");
- rs.findById(u.getIdChambre()).getTarif();
-                                                        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
-                                                        Date firstDate = u.getDateDebut();
-                                                        Date secondDate = u.getDateFin();
-
-                                                        long diff = secondDate.getTime() - firstDate.getTime();
-
-                                                        TimeUnit time = TimeUnit.DAYS;
-                                                        long diffrence = time.convert(diff, TimeUnit.MILLISECONDS);
-
-                                                    
-                                                        
+      out.write("            <div class=\"col-lg-4 grid-margin stretch-card\">\n");
+      out.write("              <div class=\"card\">\n");
+      out.write("                <div class=\"card-body\">\n");
+      out.write("                                      <h4 class=\"card-title text-center m-2\" >Chambre ");
+      out.print( u.getNumero());
+      out.write("</h4>\n");
       out.write("\n");
-      out.write("                                                    <td>\n");
-      out.write("                                                        ");
-      out.print( u.getPrix() );
-      out.write("  DH\n");
-      out.write("                                                        \n");
+      out.write("                                      <img src=\"images/");
+      out.print( u.getPhoto());
+      out.write("\" style=\"width: 100%; height: 297px\" class=\"my-3\" alt=\"image1\"/>\n");
+      out.write("                    <h4>Type : ");
+      out.print( u.getType());
+      out.write("</h4>\n");
+      out.write("                    <h4>tarif : ");
+      out.print( u.getTarif());
+      out.write(" Dh</h4>\n");
+      out.write("               \n");
+      out.write("                        <a class=\"btn btn-primary me-2\" href=\"ModChambre.jsp?id=");
+      out.print( u.getIdChambre());
+      out.write("\"  > Reserver</a>\n");
+      out.write("                    \n");
       out.write("\n");
-      out.write("                                                </tr>\n");
-      out.write("                                                ");
-}}
-      out.write("\n");
-      out.write("                                            </tbody>\n");
-      out.write("                                        </table>\n");
-      out.write("                                    </div>\n");
-      out.write("                                </div>\n");
-      out.write("                            </div>\n");
-      out.write("                        </div>\n");
-      out.write("\n");
-      out.write("                    </div>\n");
       out.write("                </div>\n");
-      out.write("                ");
+      out.write("              </div>\n");
+      out.write("            </div>\n");
+      out.write("                 ");
+
+                              
+                              }
+                                   
+                          
+      out.write("\n");
+      out.write("\n");
+      out.write("       </div>\n");
+      out.write("            \n");
+      out.write("        </div>\n");
+      out.write("\t");
       out.write("      <!-- partial:partials/_footer.html -->\r\n");
       out.write("        <footer class=\"footer\">\r\n");
       out.write("          <div class=\"d-sm-flex justify-content-center justify-content-sm-between\">\r\n");
@@ -480,8 +450,8 @@ public final class MyReservation_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("\r\n");
       out.write("</html>");
       out.write("\n");
-      out.write("            </div>\n");
       out.write("        </div>\n");
+      out.write("</div>\n");
       out.write("    </div>");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
