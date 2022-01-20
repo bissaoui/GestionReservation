@@ -12,8 +12,16 @@ public class Reservation {
 	private int idChambre;
 	private static int cmp = 0;
 
-	public Reservation(int idReservation, Date dateDebut, Date dateFin, double prix, int idUser, int idChambre) {
+	public Reservation(Date dateDebut, Date dateFin, double prix, int idUser, int idChambre) {
 		this.idReservation = ++cmp;
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
+		this.prix = prix;
+		this.idUser = idUser;
+		this.idChambre = idChambre;
+	}
+        public Reservation( int id ,Date dateDebut, Date dateFin, double prix, int idUser, int idChambre) {
+		this.idReservation = id;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 		this.prix = prix;

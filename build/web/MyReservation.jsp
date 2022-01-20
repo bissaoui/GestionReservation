@@ -1,3 +1,4 @@
+<%@page import="java.time.LocalDateTime"%>
 <%@page import="java.util.Locale"%>
 <%@page import="java.util.concurrent.TimeUnit"%>
 <%@page import="java.util.Date"%>
@@ -11,11 +12,8 @@
 <%
     int idUser = Integer.parseInt(session.getAttribute("idUser").toString());
     if (session.getAttribute("idUser") == null) {
-
         response.sendRedirect("login.jsp");
-
     }
-
 %>
 <body>
     <div class="container-scroller"> 
@@ -40,6 +38,7 @@
                                                     <th>Numero Chambre</th>
                                                     <th>Type chambre</th>
                                                     <th>Tarif</th>
+                                                    <th>Action</th>
 
                                                 </tr>
                                             </thead>
@@ -47,33 +46,43 @@
                                                 <%   ReservationServices us = new ReservationServices();
                                                     ChambreServices rs = new ChambreServices();
                                                     for (Reservation u : us.findAll()) {
-                                                        if (u.getIdUser()==idUser){
-                                                            
-                                                        
+                                                        if (u.getIdUser() == idUser) {
+
+
                                                 %>
                                                 <tr>
                                                     <td><%= u.getDateDebut()%></td>
                                                     <td><%= u.getDateFin()%></td>
                                                     <td><%= rs.findById(u.getIdChambre()).getNumero()%></td>
                                                     <td><%= rs.findById(u.getIdChambre()).getType()%></td>
-                                                    <% rs.findById(u.getIdChambre()).getTarif();
-                                                        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
-                                                        Date firstDate = u.getDateDebut();
-                                                        Date secondDate = u.getDateFin();
 
-                                                        long diff = secondDate.getTime() - firstDate.getTime();
+                                                    <td>
+                                                        <%= u.getPrix()%>  DH
 
-                                                        TimeUnit time = TimeUnit.DAYS;
-                                                        long diffrence = time.convert(diff, TimeUnit.MILLISECONDS);
+                                                    </td>
+                                                    
+                                                    <%
+                                                 Date   todayDate = new Date();
 
                                                     
-                                                        %>
-                                                    <td>
-                                                        <%= u.getPrix() %>  DH
+                                                    if( u.getDateDebut().after(todayDate)){
                                                         
+                                                 
+                                                    
+                                                    %>
+                                                    <td>
 
+                                                        <form style=" display: inline;" action="ReservationsServlet" method="post">
+                                                            <input type="text" value="sup" hidden="" name="op" />
+                                                            <input type="text" value="<%= u.getIdReservation()%>" hidden="" name="idC" />
+                                                            <button class="btn btn-sm btn-primary" type="submit">Supprimer</button>
+
+                                                        </form>
+                                                    </td>
                                                 </tr>
-                                                <%}}%>
+                                                <%}   }
+                                                    
+                                                    }%>
                                             </tbody>
                                         </table>
                                     </div>

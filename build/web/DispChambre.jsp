@@ -53,7 +53,7 @@
                     <h4>Type : <%= u.getType()%></h4>
                     <h4>tarif : <%= u.getTarif()%> Dh</h4>
                
-                        <a class="btn btn-primary me-2" href="ModChambre.jsp?id=<%= u.getIdChambre()%>"  > Reserver</a>
+                        <a class="btn btn-primary me-2" href="MakeRes.jsp?id=<%= u.getIdChambre()%>"  > Reserver</a>
                     
 
                 </div>

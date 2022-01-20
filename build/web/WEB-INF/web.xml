@@ -10,12 +10,16 @@
     </servlet>
     <servlet>
         <servlet-name>ChambreServlet</servlet-name>
-        <servlet-class>controller.ChambreServlet</servlet-class> 
+        <servlet-class>controller.ChambreServlet</servlet-class>
         <multipart-config>
-      <max-file-size>20848820</max-file-size>
-      <max-request-size>418018841</max-request-size>
-      <file-size-threshold>1048576</file-size-threshold>
- </multipart-config>
+            <max-file-size>20848820</max-file-size>
+            <max-request-size>418018841</max-request-size>
+            <file-size-threshold>1048576</file-size-threshold>
+        </multipart-config>
+    </servlet>
+    <servlet>
+        <servlet-name>ReservationsServlet</servlet-name>
+        <servlet-class>controller.ReservationsServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
@@ -27,13 +31,15 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ChambreServlet</servlet-name>
-        <url-pattern>/ChambreServlet</url-pattern> 
-      
+        <url-pattern>/ChambreServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReservationsServlet</servlet-name>
+        <url-pattern>/ReservationsServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-   
 </web-app>
