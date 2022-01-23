@@ -52,7 +52,6 @@
                                         <label  >Date fin  </label>
                                         <input class="mb-2" type="date" id="date2" name="date2"  >
                                         <br>
-                                        <h4 class="" id="prix"> prix total :  5555 DH </h4>
                                         <button type="submit" class="btn btn-primary me-2" >Submit</button>
                                         <button class="btn btn-light">Cancel</button>
 
