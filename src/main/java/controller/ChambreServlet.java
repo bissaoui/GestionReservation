@@ -57,7 +57,7 @@ public class ChambreServlet extends HttpServlet {
             String imageFileName = file.getSubmittedFileName();  // get selected image file name
 
             String image = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddhhmmss")) + imageFileName;
-            String uploadPath = "C:/Users/yassi/OneDrive/Documents/NetBeansProjects/Java1/web/images/" + image;  // upload path where we have to upload our actual image
+            String uploadPath = "C:\\Users\\yassi\\OneDrive\\Documents\\NetBeansProjects\\mavenproject1\\src\\main\\webapp\\images/" + image;  // upload path where we have to upload our actual image
 
             // Uploading our selected image into the images folder
             //writing html in the stream  
@@ -105,7 +105,7 @@ public class ChambreServlet extends HttpServlet {
                 String imageFileName = file.getSubmittedFileName();  // get selected image file name
 
                 image = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddhhmmss")) + imageFileName;
-                String uploadPath = "C:/Users/yassi/OneDrive/Documents/NetBeansProjects/Java1/web/images/" + image;  // upload path where we have to upload our actual image
+                String uploadPath = "C:\\Users\\yassi\\OneDrive\\Documents\\NetBeansProjects\\mavenproject1\\src\\main\\webapp\\images/" + image;  // upload path where we have to upload our actual image
 
                 // Uploading our selected image into the images folder
                 //writing html in the stream  
